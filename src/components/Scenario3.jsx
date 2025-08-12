@@ -2,33 +2,33 @@ import React, { useState } from 'react';
 
 const steps = [
   {
-    img: "/images/word_1.png",
-    text: "على قائمة إدراج من قائمة المهام",
-    highlightStyle: { top: "16px", left: "41px", width: "18px", height: "10px" , },
+    img: "/images/word_p3_1.jpeg",
+    text: "الخطوة الأولى: الضغط على العامود الاول الصف الاول للكتابه في الجدول",
+    highlightStyle: { top: "85px", left: "288px", width: "49px", height: "13px" , },
   },
   {
-    img: "/images/word_2.png",
-    text: "الخطوة الثانية: اختر 'جدول' من قائمة الإدراج",
-    highlightStyle: { top: "11%", left: "8.7%", width: "24px", height: "40px" },
+    img: "/images/word_p3_2.jpeg",
+    text: " الخطوة الثانية: و الان بعد الكتابة يمكنك تغير نوع الخط , حجمه و لونه من خلال شريط المهام ثم الشريط الرئيسي ",
+    highlightStyle: { top: "13px", left: "410px", width: "46px", height: "15px" },
   },
   {
-    img: "/images/word_3.png",
-    text: "الخطوة الثالثة: الضغط على إدراج الجدول",
-    highlightStyle: { top: "54%", left: "10%", width: "78px", height: "21px" },
+    img: "/images/word_p3_3.jpeg",
+    text: "الخطوة الثالثة: من خلال هذه القائمة يمكنك اختيار نوع الخط ",
+    highlightStyle: { top: "20px", left: "340px", width: "110px", height: "201px" },
   },
   {
-    img: "/images/word_4.png",
-    text: "الخطوة الرابعة: تحديد عدد الصفوف والأعمدة...",
-    highlightStyle: { top: "31%", left: "40.3%", width: "90px", height: "40px" },
+    img: "/images/word_p3_4.png.jpeg",
+    text: "الخطوة الرابعة: من خلال هذه القائمة يمكنك تغيير حجم الخط",
+    highlightStyle: { top: "20px", left: "379px", width: "30px", height: "140px" },
   },
   {
-    img: "/images/word_4.png",
-    text: "الخطوة الخامسة: اضغط على زر 'موافق' لإدراج الجدول",
-    highlightStyle: { top: "64%", left: "42.4%", width: "46px", height: "18px" },
+    img: "/images/word_p3_5.jpeg",
+    text: "الخطوة الخامسة: من خلال هذه القائمة يمكنك تغيير لون الخط",
+    highlightStyle: { top: "35px", left: "270px", width: "100px", height: "130px" },
   },
   {
-    img: "/images/word_5.png",
-    text: "الخطوة الأخيرة: تم إدراج الجدول بنجاح، تهانينا!",
+    img: "/images/word_p3_6.jpeg",
+    text: "تهانينا! لقد قمت بتنسيق الجدول بنجاح",
   },
 ];
 

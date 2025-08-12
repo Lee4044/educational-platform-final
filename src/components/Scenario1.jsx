@@ -2,34 +2,25 @@ import React, { useState } from 'react';
 
 const steps = [
   {
-    img: "/images/word_1.png",
-    text: "أول خطوة هي الضغط على قائمة إدراج من قائمة المهام",
-    highlightStyle: { top: "16px", left: "41px", width: "18px", height: "10px" , },
+    img: "/images/word_p1_1.jpeg",
+    text: " أول خطوة هي فتح برنامج ورد من خلال البحث",
+    highlightStyle: { top: "236px", left: "120px", width: "88px", height: "20px" , },
   },
   {
-    img: "/images/word_2.png",
-    text: "الخطوة الثانية: اختر 'جدول' من قائمة الإدراج",
-    highlightStyle: { top: "11%", left: "8.7%", width: "24px", height: "40px" },
+    img: "/images/word_p1_1.jpeg",
+    text: " الخطوة الثانية: الضغط على فتح لفتح ورد",
+    highlightStyle: { top: "97px", left: "240px", width: "39px", height: "14px" , },
   },
   {
-    img: "/images/word_3.png",
-    text: "الخطوة الثالثة: الضغط على إدراج الجدول",
-    highlightStyle: { top: "54%", left: "10%", width: "78px", height: "21px" },
+    img: "/images/word_p1_2.jpeg",
+    text: "الخطوة الثالثة: الضغط على مستند فارغ",
+    highlightStyle: { top: "38px", left: "354px", width: "70px", height: "60px" },
   },
   {
-    img: "/images/word_4.png",
-    text: "الخطوة الرابعة: تحديد عدد الصفوف والأعمدة...",
-    highlightStyle: { top: "31%", left: "40.3%", width: "90px", height: "40px" },
+    img: "/images/word_p1_3.jpeg",
+    text: "تهانينا! لقد قمت بفتح مستند ورد بنجاح",
   },
-  {
-    img: "/images/word_4.png",
-    text: "الخطوة الخامسة: اضغط على زر 'موافق' لإدراج الجدول",
-    highlightStyle: { top: "64%", left: "42.4%", width: "46px", height: "18px" },
-  },
-  {
-    img: "/images/word_5.png",
-    text: "الخطوة الأخيرة: تم إدراج الجدول بنجاح، تهانينا!",
-  },
+  
 ];
 
 export default function Scenario1() {
@@ -46,7 +37,7 @@ export default function Scenario1() {
         id="excelSim"
         style={{
           position: "relative",
-          width: "500px",
+          width: "470px",
           paddingTop: "252px", 
           backgroundImage: `url(${img})`,
           backgroundSize: "contain",

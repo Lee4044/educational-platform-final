@@ -2,33 +2,33 @@ import React, { useState } from 'react';
 
 const steps = [
   {
-    img: "/images/word_1.png",
-    text: "أول خطوة",
-    highlightStyle: { top: "16px", left: "41px", width: "18px", height: "10px" , },
+    img: "/images/word_p1_3.jpeg",
+    text: "أول خطوة هي الضغط على قائمة إدراج من قائمة المهام",
+    highlightStyle: { top: "13px", left: "397px", width: "20px", height: "13px" , },
   },
   {
-    img: "/images/word_2.png",
+    img: "/images/word_p2_2.png",
     text: "الخطوة الثانية: اختر 'جدول' من قائمة الإدراج",
-    highlightStyle: { top: "11%", left: "8.7%", width: "24px", height: "40px" },
+    highlightStyle: { top: "16px", left: "402px", width: "24px", height: "40px" },
   },
   {
-    img: "/images/word_3.png",
+    img: "/images/word_p2_2.png",
     text: "الخطوة الثالثة: الضغط على إدراج الجدول",
-    highlightStyle: { top: "54%", left: "10%", width: "78px", height: "21px" },
+    highlightStyle: { top: "102px", left: "360px", width: "60px", height: "21px" },
   },
   {
-    img: "/images/word_4.png",
+    img: "/images/word_p2_4.png",
     text: "الخطوة الرابعة: تحديد عدد الصفوف والأعمدة...",
-    highlightStyle: { top: "31%", left: "40.3%", width: "90px", height: "40px" },
+    highlightStyle: { top: "44px", left: "195px", width: "108px", height: "40px" },
   },
   {
-    img: "/images/word_4.png",
+    img: "/images/word_p2_4.png",
     text: "الخطوة الخامسة: اضغط على زر 'موافق' لإدراج الجدول",
-    highlightStyle: { top: "64%", left: "42.4%", width: "46px", height: "18px" },
+    highlightStyle: { top: "128px", left: "230px", width: "46px", height: "18px" },
   },
   {
-    img: "/images/word_5.png",
-    text: "الخطوة الأخيرة: تم إدراج الجدول بنجاح، تهانينا!",
+    img: "/images/word_p2_5.png",
+    text: "تهانينا! تم إدراج الجدول بنجاح",
   },
 ];
 

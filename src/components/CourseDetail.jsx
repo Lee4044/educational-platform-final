@@ -225,6 +225,8 @@ const renderSimulator = (lesson) => {
       return <WordVideoSimulator2 lesson={lesson} />;
     case 2:
       return <WordVideoSimulator3 lesson={lesson} />;
+    case 3:
+      return <WordInterfaceExplorer lesson={lesson} />;  
     default:
       return <div>Simulator not found</div>;
   }
@@ -262,7 +264,7 @@ const renderSimulator = (lesson) => {
   const WordVideoSimulator3 = () => (
     <div className="simulator">
       <div className="simulator-header">
-        <h4>🖥️ Interactive Lesson 2: {course.lessons[currentLesson].title}</h4>
+        <h4>🖥️ Interactive Lesson 3: {course.lessons[currentLesson].title}</h4>
         <Scenario3 />
         <br />
       </div>
@@ -270,6 +272,31 @@ const renderSimulator = (lesson) => {
         <button onClick={() => markLessonComplete(currentLesson)} className="complete-btn">
           Mark as Complete
         </button>
+      </div>
+    </div>
+  );
+  const WordInterfaceExplorer = () => (
+    <div className="simulator">
+      <div className="simulator-header">
+        <h4>🖥️ Interactive Lesson 4: {course.lessons[currentLesson].title}</h4>
+      </div>
+      <div className="interface-mockup">
+        <div className="word-ribbon">
+          <div className="ribbon-tab active">Home</div>
+          <div className="ribbon-tab">Insert</div>
+          <div className="ribbon-tab">Layout</div>
+          <div className="ribbon-tab">References</div>
+        </div>
+        <div className="word-toolbar">
+          <button className="tool-btn">📄</button>
+          <button className="tool-btn">💾</button>
+          <button className="tool-btn">✂️</button>
+          <button className="tool-btn">📋</button>
+          <button className="tool-btn">🔤</button>
+        </div>
+        <div className="document-area">
+          <p>Click on the tools above to explore Word's interface!</p>
+        </div>
       </div>
     </div>
   );
