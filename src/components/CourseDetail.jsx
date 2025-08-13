@@ -22,21 +22,21 @@ const CourseDetail = () => {
       lessons: [
         {
           id: 0,
-          title: 'انشاء مستند جديد باستخدام Word',
+          title: 'انشاء مستند جديد باستخدام وورد',
           duration: '15 min',
           type: 'video',
           content: 'Welcome to Microsoft Word! In this lesson, we\'ll explore the interface and basic features.'
         },
         {
           id: 1,
-          title: 'انشاء جدول باستخدام Word',
+          title: 'انشاء جدول باستخدام وورد',
           duration: '20 min',
           type: 'interactive',
           content: 'Learn how to create, save, and format your first Word document.'
         },
         {
           id: 2,
-          title: 'الكتابه داخل الجدول باستخدام Word',
+          title: 'الكتابه داخل الجدول باستخدام وورد',
           duration: '25 min',
           type: 'video',
           content: 'Master text formatting, fonts, colors, and paragraph styles.'

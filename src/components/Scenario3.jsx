@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 const steps = [
   {
     img: "/images/word_p3_1.jpeg",
-    text: "الخطوة الأولى: الضغط على العامود الاول الصف الاول للكتابه في الجدول",
+    text: "الخطوة الأولى: الضغط على الخلية للبدء بالكتابة",
     highlightStyle: { top: "85px", left: "288px", width: "49px", height: "13px" , },
   },
   {
     img: "/images/word_p3_2.jpeg",
-    text: " الخطوة الثانية: و الان بعد الكتابة يمكنك تغير نوع الخط , حجمه و لونه من خلال شريط المهام ثم الشريط الرئيسي ",
+    text: " الخطوة الثانية: يمكنك تنسيق الجدول من خلال الشريط الرئيسي ",
     highlightStyle: { top: "13px", left: "410px", width: "46px", height: "15px" },
   },
   {

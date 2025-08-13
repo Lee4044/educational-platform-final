@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const steps = [
   {
     img: "/images/word_p1_3.jpeg",
-    text: "أول خطوة هي الضغط على قائمة إدراج من قائمة المهام",
+    text: " الخطوة الاولى: الضغط على قائمة إدراج من قائمة المهام",
     highlightStyle: { top: "13px", left: "397px", width: "20px", height: "13px" , },
   },
   {
@@ -18,7 +18,7 @@ const steps = [
   },
   {
     img: "/images/word_p2_4.png",
-    text: "الخطوة الرابعة: تحديد عدد الصفوف والأعمدة...",
+    text: "الخطوة الرابعة: تحديد عدد الصفوف والأعمدة",
     highlightStyle: { top: "44px", left: "195px", width: "108px", height: "40px" },
   },
   {

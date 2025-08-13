@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 const steps = [
   {
     img: "/images/word_p1_1.jpeg",
-    text: " أول خطوة هي فتح برنامج ورد من خلال البحث",
+    text: "  الخطوة الاولى: فتح برنامج ورد من خلال البحث",
     highlightStyle: { top: "236px", left: "120px", width: "88px", height: "20px" , },
   },
   {
     img: "/images/word_p1_1.jpeg",
-    text: " الخطوة الثانية: الضغط على فتح لفتح ورد",
+    text: " الخطوة الثانية: الضغط على فتح لفتح البرنامج ",
     highlightStyle: { top: "97px", left: "240px", width: "39px", height: "14px" , },
   },
   {
@@ -18,7 +18,7 @@ const steps = [
   },
   {
     img: "/images/word_p1_3.jpeg",
-    text: "تهانينا! لقد قمت بفتح مستند ورد بنجاح",
+    text: "تهانينا! لقد قمت بفتح مستند وورد بنجاح",
   },
   
 ];
