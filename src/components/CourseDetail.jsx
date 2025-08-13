@@ -239,11 +239,7 @@ const renderSimulator = (lesson) => {
         <Scenario1 />
         <br />
       </div>
-      <div className="simulator-controls">
-        <button onClick={() => markLessonComplete(currentLesson)} className="complete-btn">
-          Mark as Complete
-        </button>
-      </div>
+      
     </div>
   );
 
@@ -254,11 +250,6 @@ const renderSimulator = (lesson) => {
         <Scenario2 />
         <br />
       </div>
-      <div className="simulator-controls">
-        <button onClick={() => markLessonComplete(currentLesson)} className="complete-btn">
-          Mark as Complete
-        </button>
-      </div>
     </div>
   );
   const WordVideoSimulator3 = () => (
@@ -267,11 +258,6 @@ const renderSimulator = (lesson) => {
         <h4>🖥️ Interactive Lesson 3: {course.lessons[currentLesson].title}</h4>
         <Scenario3 />
         <br />
-      </div>
-      <div className="simulator-controls">
-        <button onClick={() => markLessonComplete(currentLesson)} className="complete-btn">
-          Mark as Complete
-        </button>
       </div>
     </div>
   );
