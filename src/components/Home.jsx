@@ -7,7 +7,7 @@ const Home = () => {
       id: 'word-basics',
       title: 'Word Microsoft Basics',
       description: 'Learn the fundamentals of Microsoft Word',
-      image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=250&fit=crop',
+      image: '/word-icon.svg',
       duration: '4 hours',
       level: 'Beginner'
     },
@@ -15,7 +15,7 @@ const Home = () => {
       id: 'excel-beginners',
       title: 'Excel for Beginners',
       description: 'Master the basics of Excel spreadsheets',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop',
+      image: '/excel-icon.svg',
       duration: '6 hours',
       level: 'Beginner'
     },
@@ -112,6 +112,7 @@ const Home = () => {
           font-size: 3rem;
           font-weight: bold;
           margin-bottom: 1rem;
+          color: white !important;
           text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
@@ -188,7 +189,9 @@ const Home = () => {
         .course-image img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
+          background: #f8f9fa;
+          padding: 1rem;
         }
 
         .course-price {
