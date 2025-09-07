@@ -19,32 +19,54 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-
+  
     // Validation
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      setError('Please fill in all fields');
+      setError('يرجى ملء جميع الحقول');
       return;
     }
-
+  
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError('كلمات المرور غير متطابقة');
       return;
     }
-
+  
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
+      setError('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
       return;
     }
-
-    // Simulate registration (in real app, this would be an API call)
-    setSuccess('Account created successfully! Redirecting to login...');
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
+  
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        })
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        setSuccess('تم إنشاء الحساب بنجاح! جاري التوجيه لتسجيل الدخول...');
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } else {
+        setError(data.message || 'فشل في إنشاء الحساب');
+      }
+    } catch (error) {
+      setError('خطأ في الشبكة. تأكد من تشغيل الخادم');
+      console.error('Registration error:', error);
+    }
   };
 
   return (
