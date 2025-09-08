@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -16,23 +17,23 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    // Simple validation
     if (!formData.email || !formData.password) {
       setError('Please fill in all fields');
       return;
     }
 
-    // Simulate authentication (in real app, this would be an API call)
-    if (formData.email && formData.password) {
+    try {
+      const response = await authAPI.login(formData);
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userEmail', formData.email);
+      localStorage.setItem('token', response.token);
       navigate('/dashboard');
-    } else {
-      setError('Invalid credentials');
+    } catch (error) {
+      setError(error.message || 'Login failed');
     }
   };
 
@@ -73,8 +74,8 @@ const Login = () => {
             />
           </div>
           
-          <button type="submit" className="login-btn">
-            Sign In
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
         
@@ -109,17 +110,13 @@ const Login = () => {
 
         .login-header h2 {
           color: #333;
-          font-size: 2rem;
           margin-bottom: 0.5rem;
+          font-size: 2rem;
         }
 
         .login-header p {
           color: #666;
           font-size: 1rem;
-        }
-
-        .login-form {
-          margin-bottom: 2rem;
         }
 
         .form-group {
@@ -139,12 +136,44 @@ const Login = () => {
           border: 2px solid #e0e0e0;
           border-radius: 8px;
           font-size: 1rem;
-          transition: border-color 0.3s ease;
+          transition: border-color 0.3s;
         }
 
         .form-group input:focus {
           outline: none;
           border-color: #1976d2;
+        }
+
+        .login-btn {
+          width: 100%;
+          padding: 0.75rem;
+          background: linear-gradient(135deg, #1976d2, #00bcd4);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: transform 0.2s;
+        }
+
+        .login-btn:hover:not(:disabled) {
+          transform: translateY(-2px);
+        }
+
+        .login-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        .login-footer {
+          text-align: center;
+          margin-top: 2rem;
+        }
+
+        .login-footer a {
+          color: #1976d2;
+          text-decoration: none;
         }
 
         .error-message {
@@ -155,51 +184,12 @@ const Login = () => {
           margin-bottom: 1rem;
           text-align: center;
         }
-
-        .login-btn {
-          width: 100%;
-          background: linear-gradient(135deg, #1976d2 0%, #00bcd4 100%);
-          color: white;
-          border: none;
-          padding: 0.75rem;
-          border-radius: 8px;
-          font-size: 1rem;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .login-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
-        }
-
-        .login-footer {
-          text-align: center;
-        }
-
-        .login-footer p {
-          color: #666;
-        }
-
-        .login-footer a {
-          color: #1976d2;
-          text-decoration: none;
-          font-weight: 500;
-        }
-
-        .login-footer a:hover {
-          text-decoration: underline;
-        }
-
-        @media (max-width: 480px) {
-          .login-card {
-            padding: 2rem;
-          }
-        }
       `}</style>
     </div>
   );
 };
 
 export default Login;
+
+
+const API_URL = 'https://your-backend-url.railway.app';

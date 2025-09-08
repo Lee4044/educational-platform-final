@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Signup = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,49 +25,51 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-  
-    // Validation
+    setLoading(true);
+
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      setError('يرجى ملء جميع الحقول');
+      setError('Please fill in all fields');
+      setLoading(false);
       return;
     }
-  
+
     if (formData.password !== formData.confirmPassword) {
-      setError('كلمات المرور غير متطابقة');
+      setError('Passwords do not match');
+      setLoading(false);
       return;
     }
-  
+
     if (formData.password.length < 6) {
-      setError('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+      setError('Password must be at least 6 characters long');
+      setLoading(false);
       return;
     }
-  
+
     try {
-      const response = await fetch('http://localhost:3001/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password
-        })
+      await authAPI.register({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
       });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        setSuccess('تم إنشاء الحساب بنجاح! جاري التوجيه لتسجيل الدخول...');
-        setTimeout(() => {
-          navigate('/login');
-        }, 2000);
-      } else {
-        setError(data.message || 'فشل في إنشاء الحساب');
-      }
+      
+      // Automatic login after successful registration
+      const loginResponse = await authAPI.login({
+        email: formData.email,
+        password: formData.password
+      });
+      
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', formData.email);
+      localStorage.setItem('token', loginResponse.token);
+      
+      setSuccess('Account created successfully! Redirecting to dashboard...');
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
     } catch (error) {
-      setError('خطأ في الشبكة. تأكد من تشغيل الخادم');
-      console.error('Registration error:', error);
+      setError(error.message || 'Registration failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -133,8 +137,8 @@ const Signup = () => {
             />
           </div>
           
-          <button type="submit" className="signup-btn">
-            Create Account
+          <button type="submit" className="signup-btn" disabled={loading}>
+            {loading ? 'Creating Account...' : 'Create Account'}
           </button>
         </form>
         
@@ -159,7 +163,7 @@ const Signup = () => {
           border-radius: 16px;
           box-shadow: 0 8px 32px rgba(0,0,0,0.1);
           width: 100%;
-          max-width: 450px;
+          max-width: 400px;
         }
 
         .signup-header {
@@ -169,8 +173,8 @@ const Signup = () => {
 
         .signup-header h2 {
           color: #333;
-          font-size: 2rem;
           margin-bottom: 0.5rem;
+          font-size: 2rem;
         }
 
         .signup-header p {
@@ -179,32 +183,64 @@ const Signup = () => {
         }
 
         .signup-form {
-          margin-bottom: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
 
         .form-group {
-          margin-bottom: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
         }
 
         .form-group label {
-          display: block;
-          margin-bottom: 0.5rem;
-          color: #333;
           font-weight: 500;
+          color: #333;
         }
 
         .form-group input {
-          width: 100%;
           padding: 0.75rem;
           border: 2px solid #e0e0e0;
           border-radius: 8px;
           font-size: 1rem;
-          transition: border-color 0.3s ease;
+          transition: border-color 0.3s;
         }
 
         .form-group input:focus {
           outline: none;
           border-color: #1976d2;
+        }
+
+        .signup-btn {
+          background: linear-gradient(135deg, #1976d2 0%, #00bcd4 100%);
+          color: white;
+          border: none;
+          padding: 0.75rem;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: transform 0.2s;
+        }
+
+        .signup-btn:hover:not(:disabled) {
+          transform: translateY(-2px);
+        }
+
+        .signup-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        .signup-footer {
+          text-align: center;
+          margin-top: 2rem;
+        }
+
+        .signup-footer a {
+          color: #1976d2;
+          text-decoration: none;
         }
 
         .error-message {
@@ -223,48 +259,6 @@ const Signup = () => {
           border-radius: 8px;
           margin-bottom: 1rem;
           text-align: center;
-        }
-
-        .signup-btn {
-          width: 100%;
-          background: linear-gradient(135deg, #1976d2 0%, #00bcd4 100%);
-          color: white;
-          border: none;
-          padding: 0.75rem;
-          border-radius: 8px;
-          font-size: 1rem;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .signup-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
-        }
-
-        .signup-footer {
-          text-align: center;
-        }
-
-        .signup-footer p {
-          color: #666;
-        }
-
-        .signup-footer a {
-          color: #1976d2;
-          text-decoration: none;
-          font-weight: 500;
-        }
-
-        .signup-footer a:hover {
-          text-decoration: underline;
-        }
-
-        @media (max-width: 480px) {
-          .signup-card {
-            padding: 2rem;
-          }
         }
       `}</style>
     </div>
