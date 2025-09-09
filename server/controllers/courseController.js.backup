@@ -1,0 +1,39 @@
+const getAllCourses = async (req, res) => {
+  try {
+    const db = await getDatabase();
+    if (!db) {
+      throw new Error('Database connection failed');
+    }
+    
+    const [courses] = await db.execute(`
+      SELECT 
+        c.id, c.title, c.description, c.created_at, c.updated_at,
+        COUNT(DISTINCT l.id) as lesson_count,
+        COUNT(DISTINCT q.id) as quiz_count
+      FROM courses c
+      LEFT JOIN lessons l ON c.id = l.course_id
+      LEFT JOIN quizzes q ON c.id = q.course_id
+      GROUP BY c.id, c.title, c.description, c.created_at, c.updated_at
+      ORDER BY c.created_at DESC
+    `);
+    
+    if (!courses) {
+      return res.status(200).json({
+        success: true,
+        data: { courses: [] }
+      });
+    }
+    
+    return res.status(200).json({
+      success: true,
+      data: { courses }
+    });
+  } catch (error) {
+    console.error('Get all courses error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to fetch courses',
+      error: error.message
+    });
+  }
+};
