@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://educational-platform-final-production.up.railway.app/api';
+const API_BASE_URL = 'http://localhost:3001/api';
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');

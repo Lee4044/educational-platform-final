@@ -30,7 +30,7 @@ app.get('/api/health', (req, res) => {
     success: true,
     message: 'Server is running',
     timestamp: new Date().toISOString(),
-    database: 'MySQL'  // Changed from 'SQLite' to 'MySQL'
+    database: 'SQLite'  // Changed back to SQLite
   });
 });
 
